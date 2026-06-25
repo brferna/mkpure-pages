@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>竞彩网 · 日常查询与延伸阅读</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            background-color: #f9f7f2;
+            color: #2f2e2b;
+            line-height: 1.75;
+            padding: 2rem 1.2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fdfcf9;
+            padding: 2.5rem 2rem;
+            border-radius: 28px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        h1 {
+            font-weight: 500;
+            font-size: 2.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.6rem;
+            border-left: 5px solid #b5a58b;
+            padding-left: 1.2rem;
+            color: #3a3a35;
+        }
+
+        .subhead {
+            font-size: 1rem;
+            color: #7d7a72;
+            margin-bottom: 2.5rem;
+            padding-left: 1.8rem;
+            border-bottom: 1px solid #e7e2d8;
+            padding-bottom: 0.75rem;
+        }
+
+        .directory-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2.5rem 0 2rem;
+        }
+
+        .dir-card {
+            background: #f4efe7;
+            padding: 1.4rem 1.2rem;
+            border-radius: 14px;
+            transition: background 0.2s ease;
+        }
+
+        .dir-card:hover {
+            background: #ece5da;
+        }
+
+        .dir-card strong {
+            display: block;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #4b463d;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.3px;
+        }
+
+        .dir-card span {
+            font-size: 0.95rem;
+            color: #656057;
+        }
+
+        .intro-text {
+            font-size: 1.05rem;
+            margin: 2rem 0 1.8rem;
+            text-align: justify;
+        }
+
+        .intro-text a {
+            color: #826f54;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #cbbca7;
+            font-weight: 500;
+        }
+
+        .intro-text a:hover {
+            color: #4f4132;
+            text-decoration-color: #826f54;
+        }
+
+        .note-block {
+            background: #f3ede4;
+            border-left: 4px solid #b5a58b;
+            padding: 1.2rem 1.5rem;
+            margin: 2rem 0 1.8rem;
+            border-radius: 0 14px 14px 0;
+            font-size: 0.98rem;
+            color: #4a453e;
+        }
+
+        .note-block .label {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: #6f654f;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .extra-info {
+            background: #faf8f4;
+            border-radius: 16px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0 1.5rem;
+            border: 1px solid #e6dfd3;
+        }
+
+        .extra-info h3 {
+            font-weight: 500;
+            font-size: 1.25rem;
+            margin-bottom: 0.75rem;
+            color: #3f3b33;
+        }
+
+        .extra-info ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .extra-info li {
+            padding: 0.4rem 0;
+            border-bottom: 1px dashed #e2dacb;
+            display: flex;
+            gap: 0.6rem;
+        }
+
+        .extra-info li:last-child {
+            border-bottom: none;
+        }
+
+        .extra-info li::before {
+            content: "·";
+            color: #b5a58b;
+            font-weight: bold;
+        }
+
+        .faq-mini {
+            margin: 2.2rem 0 1.2rem;
+        }
+
+        .faq-mini details {
+            border-bottom: 1px solid #e5ddd0;
+            padding: 0.75rem 0;
+        }
+
+        .faq-mini details summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #4b463d;
+            padding: 0.3rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .faq-mini details summary::before {
+            content: "▸";
+            color: #b5a58b;
+            font-size: 1.1rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-mini details[open] summary::before {
+            transform: rotate(90deg);
+        }
+
+        .faq-mini details p {
+            margin: 0.5rem 0 0.2rem 1.4rem;
+            color: #5b564a;
+            font-size: 0.95rem;
+        }
+
+        .footer-note {
+            font-size: 0.9rem;
+            color: #8e897b;
+            border-top: 1px solid #e7e2d8;
+            padding-top: 1.8rem;
+            margin-top: 2.5rem;
+            text-align: center;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+
+            .container {
+                padding: 1.8rem 1.2rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                padding-left: 1rem;
+            }
+
+            .subhead {
+                padding-left: 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .directory-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+
+            .dir-card {
+                padding: 1rem;
+            }
+
+            .intro-text {
+                font-size: 1rem;
+            }
+
+            .note-block {
+                padding: 1rem;
+            }
+
+            .extra-info {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>知识库 · 目次</h1>
+    <div class="subhead">日常查询 · 对照 · 延伸阅读</div>
+
+    <div class="directory-grid">
+        <div class="dir-card">
+            <strong>赛事日历与对照</strong>
+            <span>联赛阶段、休赛窗口、跨时区对照</span>
+        </div>
+        <div class="dir-card">
+            <strong>数据与统计</strong>
+            <span>近期战绩、交锋记录、趋势汇总</span>
+        </div>
+        <div class="dir-card">
+            <strong>规则与术语</strong>
+            <span>玩法说明、让球、过关方式</span>
+        </div>
+        <div class="dir-card">
+            <strong>延伸阅读</strong>
+            <span>赛前简报、赛后复盘、背景梳理</span>
+        </div>
+    </div>
+
+    <div class="intro-text">
+        比起即时推送，许多人更习惯在需要时主动翻查——赛程是否调整、某支球队近五场的走势、或者某一类玩法的具体界定。这种场景下，一个结构清晰、内容克制的索引页往往比浮动的资讯流更顺手。<a href="https://cnwebs-sportlottery.com">竞彩网</a>的日常使用方式，也常常是带着具体问题去查阅，而非漫无目的地浏览。把信息按照用途归置好，查询的人自然能更快找到所需。
+    </div>
+
+    <div class="note-block">
+        <span class="label">⚡ 使用提示</span>
+        页面中的目录卡片仅作功能示意，实际可点区域与链接内容请以站点内具体栏目为准。建议将常查的几个分类加入浏览器书签，方便跨设备同步。
+    </div>
+
+    <div class="extra-info">
+        <h3>相关信息</h3>
+        <ul>
+            <li>联赛覆盖：欧洲五大联赛、日韩、澳超、美职联及部分杯赛</li>
+            <li>数据更新：通常于赛前 24–48 小时发布对阵及指数</li>
+            <li>术语说明：让球、胜平负、比分、半全场、总进球等</li>
+            <li>延伸材料：部分场次附有简短的前瞻或数据看点</li>
+        </ul>
+    </div>
+
+    <div class="faq-mini">
+        <details>
+            <summary>如何快速找到某场比赛的近期战绩？</summary>
+            <p>在对应联赛或杯赛页面中，通常会有「近期战绩」或「交锋记录」模块，可按球队名称筛选。部分页面也支持直接点击队名查看走势。</p>
+        </details>
+        <details>
+            <summary>让球数值是怎样确定的？</summary>
+            <p>让球数值主要基于双方实力差、主客场、近期状态等因素综合设定，不同平台可能存在细微差异。具体数值以对阵页面显示为准。</p>
+        </details>
+        <details>
+            <summary>过关场次最多可以选几场？</summary>
+            <p>常见情况下最多可选 8 场，但具体场次上限可能因玩法或活动期而调整，建议在投注前确认页面提示。</p>
+        </details>
+    </div>
+
+    <div class="footer-note">
+        信息仅供参考  ·  理性参与  ·  量力而行
+    </div>
+</div>
+</body>
+</html>
