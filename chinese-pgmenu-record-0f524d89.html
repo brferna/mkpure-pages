@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pg导航 · 实用信息卡片</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f8f9fb;
+      color: #1f2833;
+      line-height: 1.6;
+    }
+    .hero {
+      background: linear-gradient(145deg, #10131b 0%, #1a1f2b 100%);
+      color: #eef0f5;
+      padding: 4rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at 30% 40%, rgba(64, 145, 220, 0.08), transparent 70%);
+      top: -200px;
+      right: -150px;
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .hero .sub {
+      font-size: 1.15rem;
+      color: #b1bed9;
+      margin-bottom: 0.2rem;
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .hero .tagline {
+      font-size: 0.95rem;
+      color: #8892b0;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .container {
+      max-width: 1100px;
+      margin: -2rem auto 3rem;
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .intro-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
+      margin-bottom: 2.5rem;
+    }
+    .intro-card p {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+    .intro-card p:last-child {
+      margin-bottom: 0;
+    }
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+    }
+    .card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a212d;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .card li {
+      padding: 0.3rem 0;
+      font-size: 0.98rem;
+      color: #343f4e;
+      position: relative;
+      padding-left: 1.2rem;
+    }
+    .card li::before {
+      content: "·";
+      position: absolute;
+      left: 0.1rem;
+      color: #4b7bec;
+      font-weight: 700;
+    }
+    .audience-card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 2rem 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+    .audience-card h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.9rem;
+      color: #1a212d;
+    }
+    .audience-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem 1rem;
+    }
+    .audience-tags span {
+      background: #f0f2f7;
+      padding: 0.35rem 1rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      color: #1f2a3a;
+    }
+    .link-paragraph {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 2rem 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      margin-bottom: 2.5rem;
+    }
+    .link-paragraph p {
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+    .link-paragraph a {
+      color: #2863d9;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(40, 99, 217, 0.2);
+      transition: border-bottom 0.15s, color 0.15s;
+    }
+    .link-paragraph a:hover {
+      color: #1a4bb5;
+      border-bottom-color: #1a4bb5;
+    }
+    .faq-mini {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem 2rem 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+      margin-bottom: 1.5rem;
+    }
+    .faq-mini h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.6rem;
+      color: #1e2636;
+    }
+    .faq-mini p {
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      color: #364153;
+    }
+    .faq-mini p:last-child {
+      margin-bottom: 0;
+    }
+    .faq-mini a {
+      color: #2863d9;
+      border-bottom: 1px solid rgba(40, 99, 217, 0.2);
+      text-decoration: none;
+    }
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #76829b;
+      padding: 1.8rem 0 3rem;
+      border-top: 1px solid #e6eaf0;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 700px) {
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 3rem 1.5rem 4.5rem; }
+      .grid-2col { grid-template-columns: 1fr; gap: 1.2rem; }
+      .intro-card { padding: 1.6rem; }
+      .card { padding: 1.5rem; }
+      .audience-card, .link-paragraph, .faq-mini { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>pg导航</h1>
+    <div class="sub">给你的信息一个清晰的起点</div>
+    <div class="tagline">快速认识 · 直接使用 · 按需浏览</div>
+  </section>
+
+  <div class="container">
+    <!-- 用途卡片：主视觉 + 介绍 -->
+    <div class="intro-card">
+      <p>当你打开一个导航站，最怕的就是「不知道从哪开始」或者「里面到底有什么」。而<strong>pg导航</strong>从一开始就希望告诉你：这是一个经过筛选的信息集合，每个类别都对应着日常的使用场景。没有花哨的动画，没有复杂的注册步骤，打开页面，你看到的就是可以用的东西。</p>
+      <p>无论是查找实用工具、阅读某一领域的入门资料，还是想找几个高质量的内容源，你都能在这里快速定位。站点本身不生产内容，但它擅长把好的资源放在你面前。</p>
+    </div>
+
+    <!-- 双列卡片：用途场景 -->
+    <div class="grid-2col">
+      <div class="card">
+        <h3>📍 快速上手场景</h3>
+        <ul>
+          <li>想找一款轻量截图工具，直接看看列表里哪个评分最高</li>
+          <li>需要了解某个技术概念，从导航里的精选文章开始读</li>
+          <li>日常浏览几个固定博客，通过导航一键跳转</li>
+          <li>随手收藏新发现的站点，回头再分类整理</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⚙️ 隐藏的便利</h3>
+        <ul>
+          <li>每个链接都标注了简短说明，减少试错成本</li>
+          <li>部分类别下提供「为什么要用它」的小提示</li>
+          <li>页面布局稳定，不随意改版，每次来都是熟悉的位置</li>
+          <li>支持移动端浏览，通勤路上也能翻看</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 适合人群 -->
+    <div class="audience-card">
+      <h3>👥 谁会更喜欢这种导航方式</h3>
+      <div class="audience-tags">
+        <span>信息收集型用户</span>
+        <span>想减少搜索时间的人</span>
+        <span>刚接触某个领域的学习者</span>
+        <span>喜欢浏览但不想被算法推荐</span>
+        <span>需要稳定书签替代方案</span>
+        <span>偶尔寻求新鲜内容源</span>
+      </div>
+    </div>
+
+    <!-- 自然链接段落：嵌入 pg导航 -->
+    <div class="link-paragraph">
+      <p>假如你正在寻找一个干净、克制的信息入口，不妨打开 <a href="https://chinese-pgmenu.com">pg导航</a> 看看。页面左侧是分类目录，右侧展示具体站点，这种两栏结构在桌面端尤其顺手。你可以从最熟悉的类别开始，也可以直接跳到「随机发现」模块，碰碰运气。导航本身不记录你的浏览行为，也没有弹窗干扰，使用起来很安静。</p>
+      <p>另外，如果你有收藏优质站点的习惯，也可以通过页面底部的提交入口推荐给更多人——不过这不是强制要求，浏览本身就已经足够。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+      <h4>💬 你可能想问的</h4>
+      <p><strong>「这个导航需要注册吗？」</strong><br>
+      不需要。打开就能用，没有用户系统，也没有收藏功能（你可以直接用浏览器书签）。</p>
+      <p><strong>「内容多久更新一次？」</strong><br>
+      没有固定排期，当发现值得加入的优质资源时会手动添加，同时会清理失效链接。</p>
+      <p><strong>「手机上使用体验怎么样？」</strong><br>
+      响应式适配，小屏幕会变为单列布局。虽然没有 App，但添加到主屏幕后使用也很方便。</p>
+      <p>如果想了解更多细节，可以直接访问 <a href="https://chinese-pgmenu.com">pg导航</a> 自己感受。</p>
+    </div>
+
+    <div class="footer-note">
+      pg导航 &nbsp;·&nbsp; 信息有序，浏览自由
+    </div>
+  </div>
+</body>
+</html>
